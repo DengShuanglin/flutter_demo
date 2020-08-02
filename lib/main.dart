@@ -1,22 +1,19 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-//void main() {
-//  runApp(MyApp());
-//}
-
-main() => runApp(MyApp());
+void main() {
+  runApp(MyApp());
+}
 
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
     return MaterialApp(
       title: 'Hello Flutter',
       home: Scaffold(
         appBar: AppBar(
           title: Text(
-            'Profile',
+            'Home',
           ),
         ),
         body: ContentWidget(),
@@ -25,22 +22,37 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class ContentWidget extends StatelessWidget {
+class ContentWidget extends StatefulWidget {
   @override
-  Widget build(BuildContext context) {
-    return Center(
-      child: TextWidget(),
-    );
+  State<StatefulWidget> createState() {
+    return ContentWidgetState();
   }
 }
 
-class TextWidget extends StatelessWidget {
+class ContentWidgetState extends State<ContentWidget> {
+  int counter = 0;
+
   @override
   Widget build(BuildContext context) {
-    return Text(
-      'hello world',
-      textDirection: TextDirection.ltr,
-      style: TextStyle(fontSize: 30, color: Colors.cyan),
+    return Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          RaisedButton(
+            onPressed: () {
+              print('button pressed');
+              setState(() {
+                counter++;
+              });
+            },
+            child: Text('Add one'),
+          ),
+          Text(
+            'current count: $counter',
+            style: TextStyle(fontSize: 26),
+          ),
+        ],
+      ),
     );
   }
 }
